@@ -19,11 +19,15 @@ public class AdditionalServices {
     @NotBlank
     private String serviceName;
 
+    @NotBlank
+    private Integer price;
+
     public AdditionalServices() {
     }
 
-    public AdditionalServices(@NotBlank String serviceName) {
+    public AdditionalServices(@NotBlank String serviceName, @NotBlank Integer price) {
         this.serviceName = serviceName;
+        this.price = price;
     }
 
     public Long getId() {
@@ -42,18 +46,27 @@ public class AdditionalServices {
         this.serviceName = serviceName;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AdditionalServices that = (AdditionalServices) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(serviceName, that.serviceName);
+                Objects.equals(serviceName, that.serviceName) &&
+                Objects.equals(price, that.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, serviceName);
+        return Objects.hash(id, serviceName, price);
     }
 
     @Override
@@ -61,6 +74,7 @@ public class AdditionalServices {
         return "AdditionalServices{" +
                 "id=" + id +
                 ", serviceName='" + serviceName + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

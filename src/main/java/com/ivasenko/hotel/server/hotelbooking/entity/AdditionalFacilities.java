@@ -19,11 +19,15 @@ public class AdditionalFacilities {
     @NotBlank
     private String facilitieName;
 
+    @NotBlank
+    private Integer price;
+
     public AdditionalFacilities() {
     }
 
-    public AdditionalFacilities(@NotBlank String facilitieName) {
+    public AdditionalFacilities(@NotBlank String facilitieName, @NotBlank Integer price) {
         this.facilitieName = facilitieName;
+        this.price = price;
     }
 
     public Long getId() {
@@ -42,18 +46,27 @@ public class AdditionalFacilities {
         this.facilitieName = facilitieName;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AdditionalFacilities that = (AdditionalFacilities) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(facilitieName, that.facilitieName);
+                Objects.equals(facilitieName, that.facilitieName) &&
+                Objects.equals(price, that.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, facilitieName);
+        return Objects.hash(id, facilitieName, price);
     }
 
     @Override
@@ -61,6 +74,7 @@ public class AdditionalFacilities {
         return "AdditionalFacilities{" +
                 "id=" + id +
                 ", facilitieName='" + facilitieName + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

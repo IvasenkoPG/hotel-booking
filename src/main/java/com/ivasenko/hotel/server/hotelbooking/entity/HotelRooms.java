@@ -28,6 +28,9 @@ public class HotelRooms {
     @NotBlank
     private String service;
 
+    @NotBlank
+    private Integer price;
+
     private Boolean status;
 
     private String startDate;
@@ -96,6 +99,14 @@ public class HotelRooms {
         this.service = service;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     public Boolean getStatus() {
         return status;
     }
@@ -154,6 +165,7 @@ public class HotelRooms {
                 Objects.equals(typeRoom, that.typeRoom) &&
                 Objects.equals(facilitie, that.facilitie) &&
                 Objects.equals(service, that.service) &&
+                Objects.equals(price, that.price) &&
                 Objects.equals(status, that.status) &&
                 Objects.equals(startDate, that.startDate) &&
                 Objects.equals(finishDate, that.finishDate) &&
@@ -164,7 +176,7 @@ public class HotelRooms {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, numberRoom, typeRoom, facilitie, service, status, startDate, finishDate, profiles, additionalFacilities, additionalServices);
+        return Objects.hash(id, numberRoom, typeRoom, facilitie, service, price, status, startDate, finishDate, profiles, additionalFacilities, additionalServices);
     }
 
     @Override
@@ -175,6 +187,7 @@ public class HotelRooms {
                 ", typeRoom='" + typeRoom + '\'' +
                 ", facilitie='" + facilitie + '\'' +
                 ", service='" + service + '\'' +
+                ", price=" + price +
                 ", status=" + status +
                 ", startDate='" + startDate + '\'' +
                 ", finishDate='" + finishDate + '\'' +
