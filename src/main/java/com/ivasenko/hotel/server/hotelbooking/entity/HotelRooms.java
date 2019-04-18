@@ -31,6 +31,8 @@ public class HotelRooms {
     @NotBlank
     private Integer price;
 
+    private Integer countPrice;
+
     private Boolean status;
 
     private String startDate;
@@ -44,13 +46,13 @@ public class HotelRooms {
     @JoinColumn(name = "hotelRooms_id")
     private Set<Profile> profiles;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "hotelRooms_additionalFacilities", joinColumns = @JoinColumn(name = "hotelRooms_id"),
             inverseJoinColumns = @JoinColumn(name = "additionalFacilitie_id")
     )
     private Set<AdditionalFacilities> additionalFacilities;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "hotelRooms_additionalServices", joinColumns = @JoinColumn(name = "hotelRooms_id"),
             inverseJoinColumns = @JoinColumn(name = "additionalService_id")
     )
@@ -105,6 +107,14 @@ public class HotelRooms {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getCountPrice() {
+        return countPrice;
+    }
+
+    public void setCountPrice(Integer countPrice) {
+        this.countPrice = countPrice;
     }
 
     public Boolean getStatus() {
@@ -166,6 +176,7 @@ public class HotelRooms {
                 Objects.equals(facilitie, that.facilitie) &&
                 Objects.equals(service, that.service) &&
                 Objects.equals(price, that.price) &&
+                Objects.equals(countPrice, that.countPrice) &&
                 Objects.equals(status, that.status) &&
                 Objects.equals(startDate, that.startDate) &&
                 Objects.equals(finishDate, that.finishDate) &&
@@ -176,7 +187,7 @@ public class HotelRooms {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, numberRoom, typeRoom, facilitie, service, price, status, startDate, finishDate, profiles, additionalFacilities, additionalServices);
+        return Objects.hash(id, numberRoom, typeRoom, facilitie, service, price, countPrice, status, startDate, finishDate, profiles, additionalFacilities, additionalServices);
     }
 
     @Override
@@ -188,6 +199,7 @@ public class HotelRooms {
                 ", facilitie='" + facilitie + '\'' +
                 ", service='" + service + '\'' +
                 ", price=" + price +
+                ", countPrice=" + countPrice +
                 ", status=" + status +
                 ", startDate='" + startDate + '\'' +
                 ", finishDate='" + finishDate + '\'' +

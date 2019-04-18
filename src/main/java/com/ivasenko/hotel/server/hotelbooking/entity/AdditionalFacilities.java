@@ -3,6 +3,7 @@ package com.ivasenko.hotel.server.hotelbooking.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Class represents AdditionalFacilities entity.
@@ -22,12 +23,17 @@ public class AdditionalFacilities {
     @NotBlank
     private Integer price;
 
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "additionalFacilities")
+    private Set<HotelRooms> hotelRooms;
+
+
     public AdditionalFacilities() {
     }
 
-    public AdditionalFacilities(@NotBlank String facilitieName, @NotBlank Integer price) {
+    public AdditionalFacilities(@NotBlank String facilitieName, @NotBlank Integer price, Set<HotelRooms> hotelRooms) {
         this.facilitieName = facilitieName;
         this.price = price;
+        this.hotelRooms = hotelRooms;
     }
 
     public Long getId() {
@@ -54,6 +60,14 @@ public class AdditionalFacilities {
         this.price = price;
     }
 
+    public Set<HotelRooms> getHotelRooms() {
+        return hotelRooms;
+    }
+
+    public void setHotelRooms(Set<HotelRooms> hotelRooms) {
+        this.hotelRooms = hotelRooms;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,12 +75,13 @@ public class AdditionalFacilities {
         AdditionalFacilities that = (AdditionalFacilities) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(facilitieName, that.facilitieName) &&
-                Objects.equals(price, that.price);
+                Objects.equals(price, that.price) &&
+                Objects.equals(hotelRooms, that.hotelRooms);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, facilitieName, price);
+        return Objects.hash(id, facilitieName, price, hotelRooms);
     }
 
     @Override
@@ -75,6 +90,7 @@ public class AdditionalFacilities {
                 "id=" + id +
                 ", facilitieName='" + facilitieName + '\'' +
                 ", price=" + price +
+                ", hotelRooms=" + hotelRooms +
                 '}';
     }
 }
