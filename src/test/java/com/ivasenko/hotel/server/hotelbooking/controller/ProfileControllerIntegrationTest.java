@@ -8,6 +8,7 @@ import com.ivasenko.hotel.server.hotelbooking.repository.ProfileRepository;
 import com.ivasenko.hotel.server.hotelbooking.service.ProfileService;
 import com.ivasenko.hotel.server.hotelbooking.utils.JsonParserUtil;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.Before;
@@ -21,9 +22,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
 import java.io.IOException;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,6 +51,10 @@ public class ProfileControllerIntegrationTest {
     private ProfileService profileService;
     @Autowired
     private ProfileRepository profileRepository;
+    @Autowired
+    private WebApplicationContext wac;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     private Profile profile;
 
@@ -62,19 +71,11 @@ public class ProfileControllerIntegrationTest {
 
     @Before
     public void setUp(){
-        profile = addProfile();
-        profileService.createProfile(profile);
-        profile = profileService.findByPassport(profile);
-        Long id = profile.getId();
-
+        mockMvc = MockMvcBuilders
+                .webAppContextSetup(wac)
+                .build();
     }
 
-    @After
-    public void closed(){
-        if(profile != null){
-          profileService.deleteProfile(profile.getId());
-        }
-    }
 
     private String getJson(String pathToJsonFile) throws IOException, ParseException {
         JSONObject jsonObj = JsonParserUtil.parseJsonToObject(pathToJsonFile);
@@ -83,22 +84,19 @@ public class ProfileControllerIntegrationTest {
 
     @Test
     public void whenCreateProfile() throws Exception{
-        String jsonSource = getJson(CREATE_PROFILE_REQUEST_PATH);
+//        String jsonSource = getJson(CREATE_PROFILE_REQUEST_PATH);
+        String s = objectMapper.writeValueAsString(addProfile());
         mockMvc.perform(post(API_CREATE_PROFILE)
        .contentType(MediaType.APPLICATION_JSON)
-       .content(jsonSource))
+       .content(s))
        .andDo(print())
        .andExpect(status().isCreated());
 
-        JSONObject jsonObj = JsonParserUtil.parseJsonToObject(CREATE_PROFILE_REQUEST_PATH);
-        String passport = jsonObj.get("passport").toString();
-
+        JSONObject jsonObject = (JSONObject) JSONValue.parse(s);
+        String passport = (String) jsonObject.get("passport");
 
         Profile byPassport = profileRepository.findByPassport(passport);
-        assertEquals("CD 345877", byPassport.getPassport());
-        profileService.deleteProfile(byPassport.getId());
+        assertEquals("BK 123456", byPassport.getPassport());
     }
-
-
 
 }

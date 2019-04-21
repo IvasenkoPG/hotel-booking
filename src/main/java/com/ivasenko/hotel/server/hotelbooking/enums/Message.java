@@ -7,7 +7,8 @@ package com.ivasenko.hotel.server.hotelbooking.enums;
 public enum Message {
     USER_WITH_EMAIL_NOT_EXIST("User with current email doesn't exist!"),
     PROFILE_ALREADY_EXISTS("Email already exists!"),
-    PROFILE_NOT_FOUND("Profile not found!"),
+    HOTEL_ROOMS_NOT_FOUND("Hotel Rooms not found!"),
+    HOTEL_ROOMS_RESERVED_NOT_FOUND("Hotel Rooms reserved not found!"),
     PROFILES_NOT_FOUND("Profiles not found!"),
     WALLET_CREATION_LIMIT("You can create only 3 different wallets!"),
     LOW_BALANCE("Your balance is not enough to perform the transfer operation!"),

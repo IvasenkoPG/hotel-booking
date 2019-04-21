@@ -1,5 +1,7 @@
 package com.ivasenko.hotel.server.hotelbooking.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -36,6 +38,10 @@ public class Profile {
 
     @NotBlank
     private String telephone;
+
+    @JsonIgnore
+    @OneToOne(optional = false, mappedBy = "profile")
+    public HotelRooms hotelRoom;
 
 
     public Profile() {

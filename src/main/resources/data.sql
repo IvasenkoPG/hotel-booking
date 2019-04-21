@@ -1,7 +1,7 @@
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
 VALUES ('Rome', 'david@david.com', 'David', 'Hatson', 'VD 345765', '380479873409');
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
-VALUES ('Rome', 'sara@sara.com', 'Sara', 'Hatson', 'VI 749765', '380479809834');
+VALUES ('Madrid', 'sara@sara.com', 'Sara', 'Gamma', 'VI 749765', '380479809834');
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
 VALUES ('Berlin', 'genri@genri.com', 'Genri', 'Shmid', 'NG 564789', '380485680324');
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
@@ -10,62 +10,41 @@ INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
 VALUES ('Dublin', 'maykl@maykl.com', 'Maykl', 'Stivenson', 'DF 949734', '380985674389');
 
 
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (null, '', '', '1', 100, '', '', false, 'standard');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (null, '', '', '2', 115, '', '', false, 'standard');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (168, '', '13.07.2019', '3', 123, '', '07.07.2019', true, 'standard');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (208, '', '01.05.2019', '4', 180, '', '26.04.2019', true, 'comfort');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (null, '', '', '5', '195', '', '', false, 'comfort');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (246, '', '06.06.2019', '6', 200, '', '31.05.2019', true, 'comfort');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (null, '', '', '7', 256, '', '', false, 'lux');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (null, '', '', '8', 284, '', '', false, 'lux');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (null, '', '', '9', 305, '', '', false, 'lux');
-INSERT INTO hotel_rooms (count_price, facilitie, finish_date, number_room, price, service, start_date, status, type_room)
-VALUES (593 , '', '13.09.2019', '10', 500, '', '05.09.2019', true, 'premium-lux');
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (224, 28, 1024, 'Electric kettle', '1', 100, 'parking', true, 'standard', 5);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service,status, type_room, profile_id)
+VALUES (null , 28, null , 'Electric kettle', '2', 115, 'parking', false, 'standard', null);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (150,25,888, 'Hairdryer', '3', 123, 'Shoeshine', true, 'standard', 2);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (96, 48, 456, 'Breakfast', '4', 180, 'Shoeshine', true, 'comfort',4);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (null, 43, null, 'Breakfast', '5', 195, 'Shoeshine', false, 'comfort', null);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (180, 36, 1180, 'Breakfast', '6', 200, 'Ironing service', true, 'comfort', 3);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (null, 52, null, 'Breakfast in the room', '7', 256, 'Ironing service', false, 'lux', null);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (null, 52, null, 'Breakfast in the room', '8', 284, 'Ironing service', false, 'lux', null);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (null, 51, null, 'Breakfast in the room', '9', 305, 'Dry cleaning', false, 'lux', null);
+INSERT INTO hotel_rooms (count_additional_price, additional_price, count_price, facilitie, number_room, price, service, status, type_room, profile_id)
+VALUES (348, 58, 3348 , 'Breakfast in the room', '10', 500, 'Dry cleaning', true, 'premium-lux', 1);
 
 
-INSERT INTO additional_services(price, service_name) VALUES ('15', 'parking');
-INSERT INTO additional_services(price, service_name) VALUES ('20', 'Ironing service');
-INSERT INTO additional_services(price, service_name) VALUES ('35', 'Dry cleaning');
-INSERT INTO additional_services(price, service_name) VALUES ('23', 'Shoeshine');
+INSERT INTO reservation_date(finish_date, start_date) VALUES ('2019-09-13', '2019-09-05');
+INSERT INTO reservation_date(finish_date, start_date) VALUES ('2019-06-06', '2019-05-31');
+INSERT INTO reservation_date(finish_date, start_date) VALUES ('2019-05-01', '2019-04-26');
+INSERT INTO reservation_date(finish_date, start_date) VALUES ('2019-07-13', '2019-07-07');
+INSERT INTO reservation_date(finish_date, start_date) VALUES ('2019-04-29', '2019-04-27');
 
-INSERT INTO additional_facilities(facilitie_name, price) VALUES ('Breakfast in the room', '10');
-INSERT INTO additional_facilities(facilitie_name, price) VALUES ('Breakfast', '28');
-INSERT INTO additional_facilities(facilitie_name, price) VALUES ('Electric kettle', '3');
-INSERT INTO additional_facilities(facilitie_name, price) VALUES ('Hairdryer', '5');
-INSERT INTO additional_facilities(facilitie_name, price) VALUES ('Kids'' meals', '32');
-
-INSERT INTO hotel_rooms_profiles(hotel_rooms_id, profile_id) VALUES (10, 1);
-INSERT INTO hotel_rooms_profiles(hotel_rooms_id, profile_id) VALUES (10, 2);
-INSERT INTO hotel_rooms_profiles(hotel_rooms_id, profile_id) VALUES (6, 3);
-INSERT INTO hotel_rooms_profiles(hotel_rooms_id, profile_id) VALUES (4, 4);
-INSERT INTO hotel_rooms_profiles(hotel_rooms_id, profile_id) VALUES (3, 5);
-
-INSERT INTO hotel_rooms_additional_facilities(hotel_rooms_id, additional_facilitie_id) VALUES (10, 1);
-INSERT INTO hotel_rooms_additional_facilities(hotel_rooms_id, additional_facilitie_id) VALUES (10, 2);
-INSERT INTO hotel_rooms_additional_facilities(hotel_rooms_id, additional_facilitie_id) VALUES (10, 4);
-INSERT INTO hotel_rooms_additional_facilities(hotel_rooms_id, additional_facilitie_id) VALUES (6, 2);
-INSERT INTO hotel_rooms_additional_facilities(hotel_rooms_id, additional_facilitie_id) VALUES (6, 3);
-INSERT INTO hotel_rooms_additional_facilities(hotel_rooms_id, additional_facilitie_id) VALUES (4, 4);
-INSERT INTO hotel_rooms_additional_facilities(hotel_rooms_id, additional_facilitie_id) VALUES (3, 1);
+INSERT INTO hotel_rooms_reservation_dates(hotel_rooms_id, reservation_dates_id) VALUES (1,1);
+INSERT INTO hotel_rooms_reservation_dates(hotel_rooms_id, reservation_dates_id) VALUES (3,2);
+INSERT INTO hotel_rooms_reservation_dates(hotel_rooms_id, reservation_dates_id) VALUES (4,5);
+INSERT INTO hotel_rooms_reservation_dates(hotel_rooms_id, reservation_dates_id) VALUES (6,3);
+INSERT INTO hotel_rooms_reservation_dates(hotel_rooms_id, reservation_dates_id) VALUES (10,4);
 
 
-
-
-INSERT INTO hotel_rooms_additional_services(hotel_rooms_id, additional_service_id) VALUES (10, 1);
-INSERT INTO hotel_rooms_additional_services(hotel_rooms_id, additional_service_id) VALUES (10, 3);
-INSERT INTO hotel_rooms_additional_services(hotel_rooms_id, additional_service_id) VALUES (6, 1);
-INSERT INTO hotel_rooms_additional_services(hotel_rooms_id, additional_service_id) VALUES (4, 4);
-INSERT INTO hotel_rooms_additional_services(hotel_rooms_id, additional_service_id) VALUES (3, 2);
-INSERT INTO hotel_rooms_additional_services(hotel_rooms_id, additional_service_id) VALUES (3, 1);
 
 
 
