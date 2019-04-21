@@ -1,5 +1,6 @@
 package com.ivasenko.hotel.server.hotelbooking.controller;
 
+import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileCostDto;
 import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileDto;
 import com.ivasenko.hotel.server.hotelbooking.entity.HotelRooms;
 import com.ivasenko.hotel.server.hotelbooking.enums.Message;
@@ -88,5 +89,43 @@ public class HotelRoomController {
             throw new ProfileNotFoundException(Message.HOTEL_ROOMS_RESERVED_NOT_FOUND.getMsgBody());
         }
         return ResponseEntity.status(HttpStatus.OK).body(hotelRooms);
+    }
+
+    /**
+     * Method returns hotel rooms by passport.
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/hotelRooms/profile")
+    public ResponseEntity<HotelRooms> getHotelRoomByPassport(@RequestParam(name = "passport")String passport){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request to get Hotel Rooms Profile by Passport: {}", passport);
+        }
+
+        HotelRooms hotelRoomsbyPassport = hotelRoomService.findByPassport(passport);
+        if(hotelRoomsbyPassport == null){
+            LOG.info(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsbyPassport);
+    }
+
+    /**
+     * Method returns cost hotel rooms by passport.
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/hotelRooms/cost/profile")
+    public ResponseEntity<HotelRoomProfileCostDto> getHotelRoomCostByPassport(@RequestParam(name = "passport")String passport){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request to get Hotel Rooms Profile by Passport: {}", passport);
+        }
+
+        HotelRoomProfileCostDto hotelRoomsCost = hotelRoomService.findHotelRoomCost(passport);
+        if(hotelRoomsCost == null){
+            LOG.info(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsCost);
     }
 }

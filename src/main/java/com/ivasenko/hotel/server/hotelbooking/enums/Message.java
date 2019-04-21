@@ -9,6 +9,7 @@ public enum Message {
     PROFILE_ALREADY_EXISTS("Email already exists!"),
     HOTEL_ROOMS_NOT_FOUND("Hotel Rooms not found!"),
     HOTEL_ROOMS_RESERVED_NOT_FOUND("Hotel Rooms reserved not found!"),
+    HOTEL_ROOMS_BY_PROFILE_NOT_FOUND("Hotel Rooms by profile not found!"),
     PROFILES_NOT_FOUND("Profiles not found!"),
     WALLET_CREATION_LIMIT("You can create only 3 different wallets!"),
     LOW_BALANCE("Your balance is not enough to perform the transfer operation!"),

@@ -1,5 +1,6 @@
 package com.ivasenko.hotel.server.hotelbooking.repository;
 
+import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileCostDto;
 import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileDto;
 import com.ivasenko.hotel.server.hotelbooking.entity.HotelRooms;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,12 +25,13 @@ public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
     @Query("SELECT" +
             " NEW com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileDto" +
             "(hr.id, hr.numberRoom, hr.typeRoom, hr.facilitie, hr.service, hr.price, hr.additionalPrice," +
-            " hr.countAdditionalPrice, hr.countPrice, hr.status, hr.profile, rd)" +
+            " hr.countAdditionalPrice, hr.countPrice, hr.status, hr.profile)" +
             " FROM HotelRooms hr" +
             " LEFT JOIN  hr.profile p" +
             " LEFT JOIN  hr.reservationDates rd" +
             " WHERE hr.typeRoom = :typeRoom")
     List<HotelRoomProfileDto> findReservedByTypeRoom(@Param("typeRoom") final String typeRoom);
+//    List<HotelRoomProfileDto> findHotelRoomsByProfileOrderByReservationDates(String typeRoom);
 
     /**
      * Method returns all hotel rooms by type room.
@@ -46,6 +48,14 @@ public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
      */
     List<HotelRooms> findAll();
 
-
+    /**
+     * Method search for hotel room by passport.
+     *
+     * @param passport passport
+     * @return HotelRooms
+     */
+    HotelRooms findHotelRoomsByProfile_Passport(String passport);
 
 }
+
+

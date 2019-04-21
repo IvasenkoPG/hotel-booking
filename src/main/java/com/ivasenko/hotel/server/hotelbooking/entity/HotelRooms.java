@@ -57,6 +57,19 @@ public class HotelRooms {
 
     public HotelRooms(@NotBlank Integer numberRoom, @NotBlank String typeRoom, @NotBlank String facilitie,
                       @NotBlank String service, @NotBlank Integer price, @NotBlank Integer additionalPrice,
+                      Integer countAdditionalPrice, Integer countPrice) {
+        this.numberRoom = numberRoom;
+        this.typeRoom = typeRoom;
+        this.facilitie = facilitie;
+        this.service = service;
+        this.price = price;
+        this.additionalPrice = additionalPrice;
+        this.countAdditionalPrice = countAdditionalPrice;
+        this.countPrice = countPrice;
+    }
+
+    public HotelRooms(@NotBlank Integer numberRoom, @NotBlank String typeRoom, @NotBlank String facilitie,
+                      @NotBlank String service, @NotBlank Integer price, @NotBlank Integer additionalPrice,
                       Integer countAdditionalPrice, Integer countPrice, Boolean status, Profile profile,
                       Set<ReservationDate> reservationDates) {
         this.numberRoom = numberRoom;

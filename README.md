@@ -21,9 +21,11 @@ From the project folder:
 
 5. Run a command in the terminal "java -jar target/hotel-booking-0.0.1-SNAPSHOT.jar"
 
-Запуск через докер:
+Run through docker:
 
-Установить докер на машину.
+Install the docker on the machine:
+
+
 
 
 
@@ -77,6 +79,19 @@ Url: http://localhost:9991/api/hotelAllRooms
 
 Method: Get
 
+*** View Profile room ***
 
+http://localhost:9991/api/hotelRooms/profile?passport={profile passport}
 
+example passport = VD 345765
+
+Method: Get
+
+*** View Profile cost room ***
+
+http://localhost:9991/api/hotelRooms/cost/profile?passport={profile passport}
+
+example passport = VD 345765
+
+Method: Get
 

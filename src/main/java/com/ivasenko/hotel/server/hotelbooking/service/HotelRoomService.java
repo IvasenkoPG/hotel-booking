@@ -1,5 +1,6 @@
 package com.ivasenko.hotel.server.hotelbooking.service;
 
+import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileCostDto;
 import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileDto;
 import com.ivasenko.hotel.server.hotelbooking.entity.HotelRooms;
 
@@ -16,4 +17,8 @@ public interface HotelRoomService {
     List<HotelRooms> findByTypeRoom(String typeRoom);
 
     List<HotelRooms>findAll();
+
+    HotelRooms findByPassport(String passport);
+
+    HotelRoomProfileCostDto findHotelRoomCost(String passport);
 }
