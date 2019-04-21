@@ -28,17 +28,28 @@ public class HotelRoomServiceImpl implements HotelRoomService{
     }
 
     /**
-     * Method returns all reserved hotel rooms by type room.
+     * Method returns all reserved hotel rooms.
      *
-     * @param typeRoom hotel room typeRoom.
+     * @param status hotel room typeRoom.
      * @return List<HotelRoomProfileDto>
      */
     @Override
-    public List<HotelRoomProfileDto> findReservedByTypeRoom(String typeRoom) {
+    public List<HotelRoomProfileDto> findReservedByTypeRoom(Boolean status) {
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Request to get all reserved hotel room typeRoom: ", typeRoom);
+            LOG.debug("Request to get all reserved hotel room typeRoom: ", status);
         }
-        return hotelRoomRepository.findReservedByTypeRoom(typeRoom);
+        return hotelRoomRepository.findReservedByTypeRoom(status);
+    }
+
+    /**
+     * Method returns all free hotel rooms.
+     *
+     * @param status hotel room typeRoom.
+     * @return List<HotelRoomProfileDto>
+     */
+    @Override
+    public List<HotelRoomProfileDto> findFreeByTypeRoom(Boolean status) {
+        return hotelRoomRepository.findFreeByTypeRoom(status);
     }
 
     /**

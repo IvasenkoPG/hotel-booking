@@ -68,7 +68,7 @@ Method: Get
 
 *** View reserved rooms filtered by category ***
 
-Url: http://localhost:9991/api/hotelRooms/reserved?typeRoom={category}
+Url: http://localhost:9991/api/hotelRooms/reserved?status={category}
 category = standard or comfort or lux or premium-lux
 
 Method: Get
@@ -81,7 +81,7 @@ Method: Get
 
 *** View Profile room ***
 
-http://localhost:9991/api/hotelRooms/profile?passport={profile passport}
+Url:http://localhost:9991/api/hotelRooms/profile?passport={profile passport}
 
 example passport = VD 345765
 
@@ -89,9 +89,27 @@ Method: Get
 
 *** View Profile cost room ***
 
-http://localhost:9991/api/hotelRooms/cost/profile?passport={profile passport}
+Url:http://localhost:9991/api/hotelRooms/cost/profile?passport={profile passport}
 
 example passport = VD 345765
 
 Method: Get
+
+*** View Free hotel room ***
+
+Url:http://localhost:9991/api/hotelRooms/free?startDateClient={start date}&finishDateClient={finish date}
+
+do not date 
+example startDateClient=2019-08-05
+example finishDateClient=2019-08-13
+
+is date
+example startDateClient=2019-09-05
+example finishDateClient=2019-09-13
+
+
+
+Method: Get
+
+
 

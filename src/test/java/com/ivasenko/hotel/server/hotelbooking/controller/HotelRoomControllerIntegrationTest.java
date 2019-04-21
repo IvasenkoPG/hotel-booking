@@ -31,7 +31,7 @@ public class HotelRoomControllerIntegrationTest {
 
     @Test
     public void whenGetAllHotelRoomsReservedByTypeRoom() throws Exception{
-        mockMvc.perform(get("/api/hotelRooms/reserved?typeRoom=comfort"))
+        mockMvc.perform(get("/api/hotelRooms/reserved?status=true"))
                 .andExpect(status().isOk());
 
     }

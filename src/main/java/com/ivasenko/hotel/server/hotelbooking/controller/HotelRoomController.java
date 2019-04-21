@@ -5,6 +5,7 @@ import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileDto;
 import com.ivasenko.hotel.server.hotelbooking.entity.HotelRooms;
 import com.ivasenko.hotel.server.hotelbooking.enums.Message;
 import com.ivasenko.hotel.server.hotelbooking.exceptions.ProfileNotFoundException;
+import com.ivasenko.hotel.server.hotelbooking.repository.HotelRoomRepository;
 import com.ivasenko.hotel.server.hotelbooking.service.HotelRoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,9 +32,16 @@ public class HotelRoomController {
 
     private final HotelRoomService hotelRoomService;
 
+    private final HotelRoomRepository hotelRoomRepository;
+
+    private Boolean status = false;
+
+    List<HotelRoomProfileDto> hotelRoomsDto;
+
     @Autowired
-    public HotelRoomController(HotelRoomService hotelRoomService) {
+    public HotelRoomController(HotelRoomService hotelRoomService, HotelRoomRepository hotelRoomRepository) {
         this.hotelRoomService = hotelRoomService;
+        this.hotelRoomRepository = hotelRoomRepository;
     }
 
 
@@ -56,20 +65,46 @@ public class HotelRoomController {
     }
 
     /**
-     * Method returns reserved hotel rooms by type room.
+     * Method returns reserved hotel rooms.
      *
      * @return ResponseEntity
      */
     @GetMapping("/hotelRooms/reserved")
-    public ResponseEntity<List<HotelRoomProfileDto>> getAllHotelRoomsReservedByTypeRoom(@RequestParam(name = "typeRoom")String typeRoom){
+    public ResponseEntity<List<HotelRoomProfileDto>> getAllHotelRoomsReservedByTypeRoom(@RequestParam(name = "status")Boolean status){
         if (LOG.isDebugEnabled()) {
-            LOG.debug("REST request to get all reserved Hotel Rooms by Type Room: {}", typeRoom);
+            LOG.debug("REST request to get all reserved Hotel Rooms by Type Room: {}", status);
         }
-        List<HotelRoomProfileDto> hotelRoomsDto = hotelRoomService.findReservedByTypeRoom(typeRoom);
+        List<HotelRoomProfileDto> hotelRoomsDto = hotelRoomService.findReservedByTypeRoom(status);
         if(hotelRoomsDto == null || hotelRoomsDto.isEmpty()){
             LOG.info(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
             throw new ProfileNotFoundException(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
         }
+        return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsDto);
+    }
+
+    /**
+     * Method returns free hotel rooms.
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/hotelRooms/free")
+    public ResponseEntity<List<HotelRoomProfileDto>> getAllHotelRoomsFreeByTypeRoom(@RequestParam(name = "startDateClient") String startDateClient,
+                                                                                    @RequestParam(name = "finishDateClient") String finishDateClient){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request to get all free Hotel Rooms by Type Room: {}", startDateClient, finishDateClient);
+        }
+        int existDate = hotelRoomRepository.existsFreeDate(startDateClient, finishDateClient);
+        if(existDate == 0) {
+            hotelRoomsDto = hotelRoomService.findFreeByTypeRoom(status);
+            if (hotelRoomsDto == null || hotelRoomsDto.isEmpty()) {
+                LOG.info(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
+                throw new ProfileNotFoundException(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
+            }
+        }else {
+            LOG.info(Message.HOTEL_ROOMS_OCCUPIED_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_OCCUPIED_FOUND.getMsgBody());
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsDto);
     }
 

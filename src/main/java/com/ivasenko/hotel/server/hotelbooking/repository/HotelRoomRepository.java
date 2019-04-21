@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,9 +18,9 @@ import java.util.List;
 @Repository
 public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
     /**
-     * Method returns all reserved hotel rooms by type room.
+     * Method returns all reserved hotel rooms.
      *
-     * @param typeRoom hotel room typeRoom.
+     * @param status hotel room typeRoom.
      * @return List<HotelRoomProfileDto>
      */
     @Query("SELECT" +
@@ -29,9 +30,24 @@ public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
             " FROM HotelRooms hr" +
             " LEFT JOIN  hr.profile p" +
             " LEFT JOIN  hr.reservationDates rd" +
-            " WHERE hr.typeRoom = :typeRoom")
-    List<HotelRoomProfileDto> findReservedByTypeRoom(@Param("typeRoom") final String typeRoom);
-//    List<HotelRoomProfileDto> findHotelRoomsByProfileOrderByReservationDates(String typeRoom);
+            " WHERE hr.status = :status")
+    List<HotelRoomProfileDto> findReservedByTypeRoom(@Param("status") final Boolean status);
+
+    /**
+     * Method returns all free hotel rooms.
+     *
+     * @param status hotel room typeRoom.
+     * @return List<HotelRoomProfileDto>
+     */
+    @Query("SELECT" +
+            " NEW com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileDto" +
+            "(hr.id, hr.numberRoom, hr.typeRoom, hr.facilitie, hr.service, hr.price, hr.additionalPrice," +
+            " hr.countAdditionalPrice, hr.countPrice, hr.status, hr.profile)" +
+            " FROM HotelRooms hr" +
+            " LEFT JOIN  hr.profile p" +
+            " LEFT JOIN  hr.reservationDates rd" +
+            " WHERE hr.status = :status")
+    List<HotelRoomProfileDto> findFreeByTypeRoom(@Param("status") final Boolean status);
 
     /**
      * Method returns all hotel rooms by type room.
@@ -55,6 +71,12 @@ public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
      * @return HotelRooms
      */
     HotelRooms findHotelRoomsByProfile_Passport(String passport);
+
+
+
+    @Query(value = "SELECT COUNT(*) FROM reservation_date" +
+            " WHERE start_date >=:startDateClient AND finish_date<=:finishDateClient", nativeQuery = true)
+    int existsFreeDate(@Param("startDateClient") final String startDateClient, @Param("finishDateClient") final String finishDateClient);
 
 }
 

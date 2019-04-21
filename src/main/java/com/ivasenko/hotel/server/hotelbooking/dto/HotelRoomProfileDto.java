@@ -38,21 +38,6 @@ public class HotelRoomProfileDto {
     public HotelRoomProfileDto() {
     }
 
-    public HotelRoomProfileDto(Long id, Integer numberRoom, String typeRoom, String facilitie,
-                               String service, Integer price, Integer additionalPrice,
-                               Integer countAdditionalPrice, Integer countPrice, Boolean status) {
-        this.id = id;
-        this.numberRoom = numberRoom;
-        this.typeRoom = typeRoom;
-        this.facilitie = facilitie;
-        this.service = service;
-        this.price = price;
-        this.additionalPrice = additionalPrice;
-        this.countAdditionalPrice = countAdditionalPrice;
-        this.countPrice = countPrice;
-        this.status = status;
-    }
-
     public HotelRoomProfileDto(Long id, Integer numberRoom, String typeRoom, String facilitie, String service,
                                Integer price, Integer additionalPrice, Integer countAdditionalPrice,
                                Integer countPrice, Boolean status, Profile profile) {
@@ -68,23 +53,6 @@ public class HotelRoomProfileDto {
         this.status = status;
         this.profile = profile;
     }
-
-    public HotelRoomProfileDto(Long id, Integer numberRoom, String typeRoom, String facilitie, String service,
-                               Integer price, Integer additionalPrice, Integer countAdditionalPrice, Integer countPrice,
-                               Boolean status, Set<ReservationDate> reservationDate) {
-        this.id = id;
-        this.numberRoom = numberRoom;
-        this.typeRoom = typeRoom;
-        this.facilitie = facilitie;
-        this.service = service;
-        this.price = price;
-        this.additionalPrice = additionalPrice;
-        this.countAdditionalPrice = countAdditionalPrice;
-        this.countPrice = countPrice;
-        this.status = status;
-        this.reservationDate = reservationDate;
-    }
-
 
 
     public HotelRoomProfileDto(Long id, Integer numberRoom, String typeRoom, String facilitie, String service,

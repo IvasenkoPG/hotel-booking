@@ -12,7 +12,9 @@ import java.util.List;
 
 public interface HotelRoomService {
 
-    List<HotelRoomProfileDto> findReservedByTypeRoom(String typeRoom);
+    List<HotelRoomProfileDto> findReservedByTypeRoom(Boolean status);
+
+    List<HotelRoomProfileDto> findFreeByTypeRoom(Boolean status);
 
     List<HotelRooms> findByTypeRoom(String typeRoom);
 
