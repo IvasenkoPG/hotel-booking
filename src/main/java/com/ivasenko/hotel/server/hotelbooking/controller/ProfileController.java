@@ -43,17 +43,17 @@ public class ProfileController {
     public ResponseEntity<?> addProfile(@RequestBody final Profile profile) {
         LOG.info("creating new profile: {}", profile);
 
-        if(profileService.existsByEmail(profile)){
+        if(profileService.existsByPassport(profile.getPassport())){
             LOG.info(Message.PROFILE_ALREADY_EXISTS.getMsgBody());
             throw new ProfileAlreadyExistsException(Message.PROFILE_ALREADY_EXISTS.getMsgBody());
         }
         profileService.createProfile(profile);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(profile.getLastName() + " " + profile.getFirstName());
+        return ResponseEntity.status(HttpStatus.CREATED).body(profile);
     }
 
     /**
-     * Method returns registered all profiles.
+     * Method returns all profiles.
      *
      * @return ResponseEntity
      */
@@ -69,5 +69,70 @@ public class ProfileController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(profiles);
     }
+
+
+    /**
+     * Method performs registration operation for new users.
+     *
+     * @param profile contains user information.
+     * @return ResponseEntity
+     */
+    @PutMapping("/profile")
+    public ResponseEntity<?> updateProfile(@RequestBody final Profile profile) {
+        LOG.info("creating new profile: {}", profile);
+
+        if(!profileService.existsByPassport(profile.getPassport())){
+            LOG.info(Message.PROFILE_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.PROFILE_NOT_FOUND.getMsgBody());
+        }
+        profileService.updateProfile(profile);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(profile);
+    }
+
+    /**
+     * Method returns profile by passport.
+     *
+     * @param passport passport by Profile.
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/profiles/{passport}")
+    public ResponseEntity<Profile> getProfileByPassport(@PathVariable("passport") final String passport){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request to get Profile by passport: {}", passport);
+        }
+        if(!profileService.existsByPassport(passport)){
+            LOG.info(Message.PROFILE_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.PROFILE_NOT_FOUND.getMsgBody());
+        }
+        Profile profile = profileService.findByPassport(passport);
+        return ResponseEntity.status(HttpStatus.OK).body(profile);
+    }
+
+    /**
+     * Method returns profile by passport.
+     *
+     * @param passport passport by Profile.
+     *
+     * @return ResponseEntity
+     */
+    @DeleteMapping("/profile/{passport}")
+    public ResponseEntity deleteProfileByPasport(@PathVariable("passport") final String passport){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request deleting profile with passport: {}", passport);
+        }
+        Profile profile = profileService.findByPassport(passport);
+
+        if(profile == null){
+            LOG.info(Message.PROFILE_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.PROFILE_NOT_FOUND.getMsgBody());
+        }
+        profileService.deleteProfile(profile.getId());
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
 
 }

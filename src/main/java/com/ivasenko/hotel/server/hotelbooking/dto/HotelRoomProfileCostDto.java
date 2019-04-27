@@ -1,7 +1,6 @@
 package com.ivasenko.hotel.server.hotelbooking.dto;
 
-import com.ivasenko.hotel.server.hotelbooking.entity.Profile;
-import com.ivasenko.hotel.server.hotelbooking.entity.ReservationDate;
+import com.ivasenko.hotel.server.hotelbooking.entity.ReservationHotelRoom;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -18,13 +17,13 @@ public class HotelRoomProfileCostDto {
 
     private Integer countPrice;
 
-    private Set<ReservationDate> reservationDate;
+    private Set<ReservationHotelRoom> reservationDate;
 
     public HotelRoomProfileCostDto() {
     }
 
     public HotelRoomProfileCostDto(Long id, Integer countAdditionalPrice, Integer countPrice,
-                                   Set<ReservationDate> reservationDate) {
+                                   Set<ReservationHotelRoom> reservationDate) {
         this.id = id;
         this.countAdditionalPrice = countAdditionalPrice;
         this.countPrice = countPrice;
@@ -55,11 +54,11 @@ public class HotelRoomProfileCostDto {
         this.countPrice = countPrice;
     }
 
-    public Set<ReservationDate> getReservationDate() {
+    public Set<ReservationHotelRoom> getReservationDate() {
         return reservationDate;
     }
 
-    public void setReservationDate(Set<ReservationDate> reservationDate) {
+    public void setReservationDate(Set<ReservationHotelRoom> reservationDate) {
         this.reservationDate = reservationDate;
     }
 }

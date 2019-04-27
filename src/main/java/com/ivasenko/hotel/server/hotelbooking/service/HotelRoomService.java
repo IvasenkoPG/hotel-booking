@@ -1,7 +1,6 @@
 package com.ivasenko.hotel.server.hotelbooking.service;
 
-import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileCostDto;
-import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileDto;
+import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomDto;
 import com.ivasenko.hotel.server.hotelbooking.entity.HotelRooms;
 
 import java.util.List;
@@ -12,15 +11,18 @@ import java.util.List;
 
 public interface HotelRoomService {
 
-    List<HotelRoomProfileDto> findReservedByTypeRoom(Boolean status);
+//    List<HotelRoomDto> findReservedByTypeRoom(Boolean status);
+//
+    List<HotelRooms> findAllHotelRoomsFreeByDates(String startDateClient, String finishDateClient);
+//
+//    List<HotelRooms> findByTypeRoom(String typeRoom);
+//
+//    List<HotelRooms>findAll();
+//
+//    HotelRooms findByPassport(String passport);
+//
+//    HotelRoomProfileCostDto findHotelRoomCost(String passport);
 
-    List<HotelRoomProfileDto> findFreeByTypeRoom(Boolean status);
+    HotelRooms updateHotelRooms (HotelRooms hotelRooms);
 
-    List<HotelRooms> findByTypeRoom(String typeRoom);
-
-    List<HotelRooms>findAll();
-
-    HotelRooms findByPassport(String passport);
-
-    HotelRoomProfileCostDto findHotelRoomCost(String passport);
 }

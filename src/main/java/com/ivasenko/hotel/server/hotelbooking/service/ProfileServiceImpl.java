@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Class represents ProfileService implementation.
@@ -26,17 +27,18 @@ public class ProfileServiceImpl implements ProfileService{
         this.profileRepository = profileRepository;
     }
 
+
+    /**
+     * Method Returns all profiles for the database.
+     *
+     * @return List Profile
+     */
     @Override
     public List<Profile> getAllProfile() {
         if (LOG.isDebugEnabled()) {
             LOG.debug("Request to get all Profiles");
         }
         return profileRepository.findAll();
-    }
-
-    @Override
-    public Profile getProfileByPassport(String passport) {
-        return null;
     }
 
     /**
@@ -53,30 +55,49 @@ public class ProfileServiceImpl implements ProfileService{
         return profileRepository.saveAndFlush(profile);
     }
 
-
-
+    /**
+     * Method checks if profile with passport exists in database.
+     *
+     * @param passport passport
+     * @return boolean true if profile exists, false otherwise
+     */
     @Override
-    public boolean existsByEmail(Profile profile) {
+    public boolean existsByPassport(String passport) {
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Request to add Profile : {}", profile);
+            LOG.debug("Request the confirmation profile by passport : {}", passport);
         }
-        return profileRepository.existsByEmail(profile.getEmail());
+        return profileRepository.existsByPassport(passport);
     }
 
+    /**
+     * Method search for profile by passport.
+     *
+     * @param passport passport
+     * @return Optional<Profile>
+     */
     @Override
-    public Profile findByPassport(Profile profile) {
-        return profileRepository.findByPassport(profile.getPassport());
+    public Profile findByPassport(String passport) {
+        return profileRepository.findByPassport(passport);
     }
 
+    /**
+     * Method update profile to database.
+     *
+     * @param profile new profile
+     * @return Profile
+     */
     @Override
-    public int updateProfile(Profile profile) {
-        return 0;
+    public Profile updateProfile(Profile profile) {
+        return profileRepository.save(profile);
     }
 
+    /**
+     * Method  profile from the database.
+     *
+     * @param id profile id
+     */
     @Override
     public void deleteProfile(Long id) {
         profileRepository.deleteById(id);
     }
-
-
 }

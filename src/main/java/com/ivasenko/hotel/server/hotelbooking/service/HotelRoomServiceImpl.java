@@ -1,7 +1,6 @@
 package com.ivasenko.hotel.server.hotelbooking.service;
 
-import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileCostDto;
-import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileDto;
+import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomDto;
 import com.ivasenko.hotel.server.hotelbooking.entity.HotelRooms;
 import com.ivasenko.hotel.server.hotelbooking.repository.HotelRoomRepository;
 import org.slf4j.Logger;
@@ -27,85 +26,93 @@ public class HotelRoomServiceImpl implements HotelRoomService{
         this.hotelRoomRepository = hotelRoomRepository;
     }
 
-    /**
-     * Method returns all reserved hotel rooms.
-     *
-     * @param status hotel room typeRoom.
-     * @return List<HotelRoomProfileDto>
-     */
+//    /**
+//     * Method returns all reserved hotel rooms.
+//     *
+//     * @param status hotel room typeRoom.
+//     * @return List<HotelRoomDto>
+//     */
+//    @Override
+//    public List<HotelRoomDto> findReservedByTypeRoom(Boolean status) {
+//        if (LOG.isDebugEnabled()) {
+//            LOG.debug("Request to get all reserved hotel room typeRoom: ", status);
+//        }
+//        return hotelRoomRepository.findReservedByTypeRoom(status);
+//    }
+//
+//    /**
+//     * Method returns all free hotel rooms.
+//     *
+//     * @param status hotel room typeRoom.
+//     * @return List<HotelRoomDto>
+//     */
     @Override
-    public List<HotelRoomProfileDto> findReservedByTypeRoom(Boolean status) {
+    public List<HotelRooms> findAllHotelRoomsFreeByDates(String startDateClient, String finishDateClient){
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Request to get all reserved hotel room typeRoom: ", status);
+            LOG.debug("Request to get all free hotel room by Dates: ", startDateClient, finishDateClient);
         }
-        return hotelRoomRepository.findReservedByTypeRoom(status);
+        return hotelRoomRepository.findAllHotelRoomsFreeByDates(startDateClient, finishDateClient);
     }
+//
+//    /**
+//     * Method returns all hotel rooms by type room.
+//     *
+//     * @param typeRoom hotel room typeRoom.
+//     * @return List<HotelRoomDto>
+//     */
+//    @Override
+//    public List<HotelRooms> findByTypeRoom(String typeRoom) {
+//        if (LOG.isDebugEnabled()) {
+//            LOG.debug("Request to get all hotel room typeRoom: ", typeRoom);
+//        }
+//
+//        return hotelRoomRepository.findByTypeRoom(typeRoom);
+//    }
+//
+//    /**
+//     * Method returns all hotel rooms.
+//     *
+//     * @return List<HotelRoomDto>
+//     */
+//    @Override
+//    public List<HotelRooms> findAll() {
+//        if (LOG.isDebugEnabled()) {
+//            LOG.debug("Request to get all hotel room");
+//        }
+//        return hotelRoomRepository.findAll();
+//    }
+//
+//    /**
+//     * Method returns hotel room profile.
+//     *
+//     * @return HotelRooms
+//     */
+//
+//    @Override
+//    public HotelRooms findByPassport(String passport) {
+//        if (LOG.isDebugEnabled()) {
+//            LOG.debug("Request to return hotel room by passport: ", passport);
+//        }
+//        return hotelRoomRepository.findHotelRoomsByProfiles_Passport(passport);
+//    }
+//
+//    @Override
+//    public HotelRoomProfileCostDto findHotelRoomCost(String passport) {
+//        if (LOG.isDebugEnabled()) {
+//            LOG.debug("Request to return cost hotel room by passport: ", passport);
+//        }
+//        HotelRooms hotelRoomsByProfilePassport = hotelRoomRepository.findHotelRoomsByProfiles_Passport(passport);
+//        HotelRoomProfileCostDto hotelRoomProfileCostDto = new HotelRoomProfileCostDto();
+//        hotelRoomProfileCostDto.setId(hotelRoomsByProfilePassport.getId());
+//        hotelRoomProfileCostDto.setCountAdditionalPrice(hotelRoomsByProfilePassport.getCountAdditionalPrice());
+//        hotelRoomProfileCostDto.setCountPrice(hotelRoomsByProfilePassport.getCountPrice());
+//        hotelRoomProfileCostDto.setReservationDate(hotelRoomsByProfilePassport.getReservationDates());
+//        return hotelRoomProfileCostDto;
+//    }
 
-    /**
-     * Method returns all free hotel rooms.
-     *
-     * @param status hotel room typeRoom.
-     * @return List<HotelRoomProfileDto>
-     */
     @Override
-    public List<HotelRoomProfileDto> findFreeByTypeRoom(Boolean status) {
-        return hotelRoomRepository.findFreeByTypeRoom(status);
-    }
-
-    /**
-     * Method returns all hotel rooms by type room.
-     *
-     * @param typeRoom hotel room typeRoom.
-     * @return List<HotelRoomProfileDto>
-     */
-    @Override
-    public List<HotelRooms> findByTypeRoom(String typeRoom) {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("Request to get all hotel room typeRoom: ", typeRoom);
-        }
-
-        return hotelRoomRepository.findByTypeRoom(typeRoom);
-    }
-
-    /**
-     * Method returns all hotel rooms.
-     *
-     * @return List<HotelRoomProfileDto>
-     */
-    @Override
-    public List<HotelRooms> findAll() {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("Request to get all hotel room");
-        }
-        return hotelRoomRepository.findAll();
-    }
-
-    /**
-     * Method returns hotel room profile.
-     *
-     * @return HotelRooms
-     */
-
-    @Override
-    public HotelRooms findByPassport(String passport) {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("Request to return hotel room by passport: ", passport);
-        }
-        return hotelRoomRepository.findHotelRoomsByProfile_Passport(passport);
-    }
-
-    @Override
-    public HotelRoomProfileCostDto findHotelRoomCost(String passport) {
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("Request to return cost hotel room by passport: ", passport);
-        }
-        HotelRooms hotelRoomsByProfilePassport = hotelRoomRepository.findHotelRoomsByProfile_Passport(passport);
-        HotelRoomProfileCostDto hotelRoomProfileCostDto = new HotelRoomProfileCostDto();
-        hotelRoomProfileCostDto.setId(hotelRoomsByProfilePassport.getId());
-        hotelRoomProfileCostDto.setCountAdditionalPrice(hotelRoomsByProfilePassport.getCountAdditionalPrice());
-        hotelRoomProfileCostDto.setCountPrice(hotelRoomsByProfilePassport.getCountPrice());
-        hotelRoomProfileCostDto.setReservationDate(hotelRoomsByProfilePassport.getReservationDates());
-        return hotelRoomProfileCostDto;
+    public HotelRooms updateHotelRooms(HotelRooms hotelRooms) {
+        return hotelRoomRepository.save(hotelRooms);
     }
 
 }

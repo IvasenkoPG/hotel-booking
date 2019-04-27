@@ -3,6 +3,7 @@ package com.ivasenko.hotel.server.hotelbooking.service;
 import com.ivasenko.hotel.server.hotelbooking.entity.Profile;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Interface represents Profile service methods.
@@ -11,11 +12,10 @@ import java.util.List;
 public interface ProfileService {
 
     List<Profile> getAllProfile();
-    Profile getProfileByPassport(String passport);
     Profile createProfile(Profile profile);
-    boolean existsByEmail(Profile profile);
-    Profile findByPassport(Profile profile);
-    int updateProfile(Profile profile);
+    boolean existsByPassport(String passport);
+    Profile findByPassport(String passport);
+    Profile updateProfile(Profile profile);
     void deleteProfile(Long id);
 
 

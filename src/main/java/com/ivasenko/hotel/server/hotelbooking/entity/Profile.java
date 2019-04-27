@@ -1,11 +1,9 @@
 package com.ivasenko.hotel.server.hotelbooking.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Class represents Profile entity.
@@ -20,35 +18,32 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+
     private String lastName;
 
-    @NotBlank
+
     private String firstName;
 
-    @NotBlank
+
     private String passport;
 
-    @NotBlank
     @Email
     private String email;
 
-    @NotBlank
+
     private String address;
 
-    @NotBlank
+
     private String telephone;
 
-    @JsonIgnore
-    @OneToOne(optional = false, mappedBy = "profile")
-    public HotelRooms hotelRoom;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "profiles")
+    private Set<ReservationHotelRoom> reservationHotelRooms;
 
     public Profile() {
     }
 
-    public Profile(@NotBlank String lastName, @NotBlank String firstName, @NotBlank String passport,
-                   @NotBlank @Email String email, @NotBlank String address, @NotBlank String telephone) {
+    public Profile( String lastName,  String firstName,  String passport,
+                    String email,  String address,  String telephone) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.passport = passport;

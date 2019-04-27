@@ -6,3 +6,29 @@
   "address":"Rome",
   "telephone":"380477489391"
 }
+
+{
+  "id": 2,
+  "numberRoom": 2,
+  "typeRoom": "standard",
+  "facilitie": "Electric kettle",
+  "service": "parking",
+  "price": 115,
+  "additionalPrice": 28,
+  "countAdditionalPrice": null,
+  "countPrice": null,
+  "status": false,
+  "profiles":[ {
+    "lastName":"Smity",
+    "firstName":"Jonin",
+    "passport":"CK 390877",
+    "email":"joninY@jonin.com",
+    "address":"Krakow",
+    "telephone":"380477489791"
+  }],
+  "reservationDates": [
+    {
+      "startDate": "2019-09-01",
+      "finishDate": "2019-09-03"
+    }]
+}
