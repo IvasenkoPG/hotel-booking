@@ -1,6 +1,7 @@
 package com.ivasenko.hotel.server.hotelbooking.controller;
 
 import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomDto;
+import com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomProfileCostDto;
 import com.ivasenko.hotel.server.hotelbooking.entity.HotelRooms;
 import com.ivasenko.hotel.server.hotelbooking.enums.Message;
 import com.ivasenko.hotel.server.hotelbooking.exceptions.ProfileNotFoundException;
@@ -74,42 +75,24 @@ public class HotelRoomController {
 //    }
 
 
-//    /**
-//     * Method returns all hotel rooms.
-//     *
-//     * @return ResponseEntity
-//     */
-//    @GetMapping("/hotelAllRooms")
-//    public ResponseEntity<List<HotelRooms>> getAllHotelRooms(){
-//        if (LOG.isDebugEnabled()) {
-//            LOG.debug("REST request to get all Hotel Rooms");
-//        }
-//        List<HotelRooms> hotelRooms = hotelRoomService.findAll();
-//        if(hotelRooms == null || hotelRooms.isEmpty()){
-//            LOG.info(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
-//            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(hotelRooms);
-//    }
-//
-//    /**
-//     * Method returns reserved hotel rooms.
-//     *
-//     * @return ResponseEntity
-//     */
-//    @GetMapping("/hotelRooms/reserved")
-//    public ResponseEntity<List<HotelRoomDto>> getAllHotelRoomsReservedByTypeRoom(@RequestParam(name = "status")Boolean status){
-//        if (LOG.isDebugEnabled()) {
-//            LOG.debug("REST request to get all reserved Hotel Rooms by Type Room: {}", status);
-//        }
-//        List<HotelRoomDto> hotelRoomsDto = hotelRoomService.findReservedByTypeRoom(status);
-//        if(hotelRoomsDto == null || hotelRoomsDto.isEmpty()){
-//            LOG.info(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
-//            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsDto);
-//    }
-//
+    /**
+     * Method returns all hotel rooms.
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/hotelAllRooms")
+    public ResponseEntity<List<HotelRooms>> getAllHotelRooms(){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request to get all Hotel Rooms");
+        }
+        List<HotelRooms> hotelRooms = hotelRoomService.findAll();
+        if(hotelRooms == null || hotelRooms.isEmpty()){
+            LOG.info(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(hotelRooms);
+    }
+
     /**
      * Method returns free hotel rooms.
      *
@@ -131,73 +114,61 @@ public class HotelRoomController {
             }
         return ResponseEntity.status(HttpStatus.OK).body(allHotelRoomsFreeByDates);
     }
-//
-//    /**
-//     * Method returns hotel rooms by type room.
-//     *
-//     * @return ResponseEntity
-//     */
-//    @GetMapping("/hotelRooms")
-//    public ResponseEntity<List<HotelRooms>> getAllHotelRoomsByTypeRoom(@RequestParam(name = "typeRoom")String typeRoom){
-//        if (LOG.isDebugEnabled()) {
-//            LOG.debug("REST request to get all Hotel Rooms by Type Room: {}", typeRoom);
-//        }
-//        List<HotelRooms> hotelRooms = hotelRoomService.findByTypeRoom(typeRoom);
-//        if(hotelRooms == null || hotelRooms.isEmpty()){
-//            LOG.info(Message.HOTEL_ROOMS_RESERVED_NOT_FOUND.getMsgBody());
-//            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_RESERVED_NOT_FOUND.getMsgBody());
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(hotelRooms);
-//    }
-//
-//    /**
-//     * Method returns hotel rooms by passport.
-//     *
-//     * @return ResponseEntity
-//     */
-//    @GetMapping("/hotelRooms/profile")
-//    public ResponseEntity<HotelRooms> getHotelRoomByPassport(@RequestParam(name = "passport")String passport){
-//        if (LOG.isDebugEnabled()) {
-//            LOG.debug("REST request to get Hotel Rooms Profile by Passport: {}", passport);
-//        }
-//
-//        HotelRooms hotelRoomsbyPassport = hotelRoomService.findByPassport(passport);
-//        if(hotelRoomsbyPassport == null){
-//            LOG.info(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
-//            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsbyPassport);
-//    }
-//
-//    /**
-//     * Method returns cost hotel rooms by passport.
-//     *
-//     * @return ResponseEntity
-//     */
-//    @GetMapping("/hotelRooms/cost/profile")
-//    public ResponseEntity<HotelRoomProfileCostDto> getHotelRoomCostByPassport(@RequestParam(name = "passport")String passport){
-//        if (LOG.isDebugEnabled()) {
-//            LOG.debug("REST request to get Hotel Rooms Profile by Passport: {}", passport);
-//        }
-//
-//        HotelRoomProfileCostDto hotelRoomsCost = hotelRoomService.findHotelRoomCost(passport);
-//        if(hotelRoomsCost == null){
-//            LOG.info(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
-//            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
-//        }
-//        return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsCost);
-//    }
 
-//    @PutMapping("/hotelRoom")
-//    public ResponseEntity<?> updateHotelRoom(@RequestBody final HotelRooms hotelRooms) {
-//        LOG.info("creating new profile: {}", hotelRooms);
+    /**
+     * Method returns hotel rooms by type room.
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/hotelRooms")
+    public ResponseEntity<List<HotelRooms>> getAllHotelRoomsByTypeRoom(@RequestParam(name = "typeRoom")String typeRoom){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request to get all Hotel Rooms by Type Room: {}", typeRoom);
+        }
+        List<HotelRooms> hotelRooms = hotelRoomService.findByTypeRoom(typeRoom);
+        if(hotelRooms == null || hotelRooms.isEmpty()){
+            LOG.info(Message.HOTEL_ROOMS_RESERVED_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_RESERVED_NOT_FOUND.getMsgBody());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(hotelRooms);
+    }
 
-//        if(profileService.existsByEmail(profile)){
-//            LOG.info(Message.PROFILE_ALREADY_EXISTS.getMsgBody());
-//            throw new ProfileAlreadyExistsException(Message.PROFILE_ALREADY_EXISTS.getMsgBody());
-//        }
-//        hotelRoomService.updateHotelRooms(hotelRooms);
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).body(hotelRooms.getNumberRoom());
-//    }
+    /**
+     * Method returns hotel rooms by passport.
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/hotelRooms/profile")
+    public ResponseEntity<HotelRoomDto> getHotelRoomByPassport(@RequestParam(name = "passport")String passport){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request to get Hotel Rooms Profile by Passport: {}", passport);
+        }
+
+        HotelRoomDto hotelRoomsbyPassport = hotelRoomService.findHotelRoomByPassport(passport);
+        if(hotelRoomsbyPassport == null){
+            LOG.info(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsbyPassport);
+    }
+
+    /**
+     * Method returns cost hotel rooms by passport.
+     *
+     * @return ResponseEntity
+     */
+    @GetMapping("/hotelRooms/cost/profile")
+    public ResponseEntity<HotelRoomProfileCostDto> getHotelRoomCostByPassport(@RequestParam(name = "passport")String passport){
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("REST request to get Hotel Rooms Profile by Passport: {}", passport);
+        }
+
+        HotelRoomProfileCostDto hotelRoomsCost = hotelRoomService.findHotelRoomCost(passport);
+        if(hotelRoomsCost == null){
+            LOG.info(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
+            throw new ProfileNotFoundException(Message.HOTEL_ROOMS_BY_PROFILE_NOT_FOUND.getMsgBody());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(hotelRoomsCost);
+    }
+
 }

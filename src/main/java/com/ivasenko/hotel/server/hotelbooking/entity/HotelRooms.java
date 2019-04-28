@@ -44,6 +44,16 @@ public class HotelRooms {
     }
 
     public HotelRooms(Integer numberRoom, String typeRoom, String facilitie, String service,
+                      Integer priceRoom, Integer additionalPriceForOption) {
+        this.numberRoom = numberRoom;
+        this.typeRoom = typeRoom;
+        this.facilitie = facilitie;
+        this.service = service;
+        this.priceRoom = priceRoom;
+        this.additionalPriceForOption = additionalPriceForOption;
+    }
+
+    public HotelRooms(Integer numberRoom, String typeRoom, String facilitie, String service,
                       Integer priceRoom, Integer additionalPriceForOption,
                       Set<ReservationHotelRoom> reservationHotelRooms) {
         this.numberRoom = numberRoom;

@@ -44,6 +44,22 @@ REST application Hotel booking
 
 *************************** Request on Endpoint ***********************************
 
+*** View list of available rooms ***
+
+Url: http://localhost:9991/api/hotelRooms/free?startDateClient = '2019-09-05'&finishDateClient = '2019-09-13'
+
+example startDateClient = '2019-09-05'
+        finishDateClient = '2019-09-13'
+        
+Method: Get
+
+*** View rooms filtered by category ***
+
+Url: http://localhost:9991/api/hotelRooms?typeRoom={category}
+category = standard or comfort or lux or premium-lux
+
+Method: Get
+
 *** Create Profile ***
 
 Url: http://localhost:9991/api/profile
@@ -59,17 +75,26 @@ Method: Post
    "telephone":"0457489390"
 }
 
-*** View rooms filtered by category ***
 
-Url: http://localhost:9991/api/hotelRooms?typeRoom={category}
-category = standard or comfort or lux or premium-lux
+*** Profile booking the room for specified days ***
+
+
+
+
+
+*** View Profile room ***
+
+Url:http://localhost:9991/api/hotelRooms/profile?passport={profile passport}
+
+example passport = VD345765
 
 Method: Get
 
-*** View reserved rooms filtered by category ***
+*** View Profile cost room ***
 
-Url: http://localhost:9991/api/hotelRooms/reserved?status={category}
-category = standard or comfort or lux or premium-lux
+Url:http://localhost:9991/api/hotelRooms/cost/profile?passport={profile passport}
+
+example passport = VD345765
 
 Method: Get
 
@@ -79,37 +104,43 @@ Url: http://localhost:9991/api/hotelAllRooms
 
 Method: Get
 
-*** View Profile room ***
+*** View All profile ***
 
-Url:http://localhost:9991/api/hotelRooms/profile?passport={profile passport}
-
-example passport = VD 345765
+Url: http://localhost:9991/api/profiles
 
 Method: Get
 
-*** View Profile cost room ***
+*** View Profile By passport ***
 
-Url:http://localhost:9991/api/hotelRooms/cost/profile?passport={profile passport}
+Url: http://localhost:9991/api/profile/{passport}
 
-example passport = VD 345765
+example passport = VD345765
+
+Method: Get
+
+*** Update Profile By passport ***
+
+Url: http://localhost:9991/api/profile
 
 Method: Get
 
-*** View Free hotel room ***
+{
+    "id": 1,
+    "lastName": "Hatson",
+    "firstName": "David",
+    "passport": "VD345765",
+    "email": "david@david.com",
+    "address": "London",
+    "telephone": "380479873409"
+}
 
-Url:http://localhost:9991/api/hotelRooms/free?startDateClient={start date}&finishDateClient={finish date}
+*** Delete Profile By passport ***
 
-do not date 
-example startDateClient=2019-08-05
-example finishDateClient=2019-08-13
+Url: http://localhost:9991/api/profile/{passport}
 
-is date
-example startDateClient=2019-09-05
-example finishDateClient=2019-09-13
+example passport = VD345765
 
-
-
-Method: Get
+Method: Delete
 
 
 

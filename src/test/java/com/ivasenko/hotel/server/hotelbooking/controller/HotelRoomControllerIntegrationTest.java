@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = HotelBookingApplication.class)
 @AutoConfigureMockMvc
 @TestPropertySource(locations="classpath:application.properties")
-public class HotelRoomControllerIntegrationTest {
+public class HotelRoomControllerIntegrationTest extends ProfileControllerIntegrationTest{
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,17 +38,6 @@ public class HotelRoomControllerIntegrationTest {
 
     @Autowired
     private ObjectMapper objectMapper;
-
-//    public Profile addProfile(){
-//        Profile profile = new Profile();
-//        profile.setLastName("Scot");
-//        profile.setFirstName("Mark");
-//        profile.setPassport("BK123456");
-//        profile.setEmail("mark@mark.com");
-//        profile.setAddress("Vena");
-//        profile.setTelephone("380501234567");
-//        return profile;
-//    }
 
     @Before
     public void setUp(){
@@ -77,14 +66,14 @@ public class HotelRoomControllerIntegrationTest {
 
     }
 
-//    @Test
-//    public void whenGetHotelRoomByPassport() throws Exception{
-//        Profile profile = profileService.createProfile(addProfile());
-//
-//        mockMvc.perform(get("/api/hotelRooms/profile?passport={passport}", profile.getPassport()))
-//                .andExpect(status().isOk());
-//
-//        profileService.deleteProfile(profile.getId());
-//    }
+    @Test
+    public void whenGetHotelRoomByPassport() throws Exception{
+        Profile profile = profileService.createProfile(addProfile());
+
+        mockMvc.perform(get("/api/hotelRooms/profile?passport={passport}", profile.getPassport()))
+                .andExpect(status().isOk());
+
+        profileService.deleteProfile(profile.getId());
+    }
 
 }

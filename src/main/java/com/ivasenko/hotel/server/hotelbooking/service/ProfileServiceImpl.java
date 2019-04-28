@@ -73,7 +73,7 @@ public class ProfileServiceImpl implements ProfileService{
      * Method search for profile by passport.
      *
      * @param passport passport
-     * @return Optional<Profile>
+     * @return Profile
      */
     @Override
     public Profile findByPassport(String passport) {

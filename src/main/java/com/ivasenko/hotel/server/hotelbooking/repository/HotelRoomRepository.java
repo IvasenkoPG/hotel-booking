@@ -44,32 +44,38 @@ public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
             "LEFT JOIN  reservation_hotel_room rhr ON hr.id = rhr.hotel_rooms_id" +
             " WHERE NOT ((start_date BETWEEN :startDateClient AND :finishDateClient) OR (finish_date BETWEEN :startDateClient AND :finishDateClient)) OR start_date IS NULL", nativeQuery = true)
     List<HotelRooms> findAllHotelRoomsFreeByDates(@Param("startDateClient") final String startDateClient, @Param("finishDateClient") final String finishDateClient);
-//
-//    /**
-//     * Method returns all hotel rooms by type room.
-//     *https://github.com/IvasenkoPG/hotel-booking/tree/master
-//     * @param typeRoom hotel room typeRoom.
-//     * @return List<HotelRoomDto>
-//     */
-//    List<HotelRooms> findByTypeRoom(String typeRoom);
-//
-//    /**
-//     * Method returns all hotel rooms.
-//     *
-//     * @return List<HotelRoom>
-//     */
-//    List<HotelRooms> findAll();
-//
-//    /**
-//     * Method search for hotel room by passport.
-//     *
-//     * @param passport passport
-//     * @return HotelRooms
-//     */
-//    HotelRooms findHotelRoomsByProfiles_Passport(String passport);
-//
-//
-//
+
+    /**
+     * Method returns all hotel rooms by type room.
+     *
+     * @param typeRoom hotel room typeRoom.
+     *
+     * @return List<HotelRoom>
+     */
+    List<HotelRooms> findByTypeRoom(String typeRoom);
+
+    /**
+     * Method returns all hotel rooms.
+     *
+     * @return List<HotelRoom>
+     */
+    List<HotelRooms> findAll();
+
+    /**
+     * Method search for hotel room by passport.
+     *
+     * @param passport passport
+     * @return HotelRooms
+     */
+    @Query("SELECT NEW com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomDto(hr.id, hr.numberRoom, hr.typeRoom," +
+            " hr.facilitie, hr.service, rhr.priceRoomCount, rhr.additionalPriceForOptionCount)" +
+            "FROM HotelRooms hr " +
+            "LEFT JOIN ReservationHotelRoom rhr ON hr.id = hotel_rooms_id " +
+            "LEFT JOIN Profile p ON p.id = profiles_id where p.passport = :passport")
+    HotelRoomDto findHotelRoomsByPassport(@Param("passport") final String passport);
+
+
+
 //    @Query(value = "SELECT COUNT(*) FROM reservation_date" +
 //            " WHERE start_date >=:startDateClient AND finish_date<=:finishDateClient", nativeQuery = true)
 //    int existsFreeDate(@Param("startDateClient") final String startDateClient, @Param("finishDateClient") final String finishDateClient);

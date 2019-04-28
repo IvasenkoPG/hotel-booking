@@ -1,13 +1,13 @@
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
-VALUES ('Rome', 'david@david.com', 'David', 'Hatson', 'VD 345765', '380479873409');
+VALUES ('Rome', 'david@david.com', 'David', 'Hatson', 'VD345765', '380479873409');
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
-VALUES ('Madrid', 'sara@sara.com', 'Sara', 'Gamma', 'VI 749765', '380479809834');
+VALUES ('Madrid', 'sara@sara.com', 'Sara', 'Gamma', 'VI749765', '380479809834');
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
-VALUES ('Berlin', 'genri@genri.com', 'Genri', 'Shmid', 'NG 564789', '380485680324');
+VALUES ('Berlin', 'genri@genri.com', 'Genri', 'Shmid', 'NG564789', '380485680324');
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
-VALUES ('Paris', 'poly@poly.com', 'Poly', 'Loren', 'OU 949403', '380648390923');
+VALUES ('Paris', 'poly@poly.com', 'Poly', 'Loren', 'OU949403', '380648390923');
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
-VALUES ('Dublin', 'maykl@maykl.com', 'Maykl', 'Stivenson', 'DF 949734', '380985674389');
+VALUES ('Dublin', 'maykl@maykl.com', 'Maykl', 'Stivenson', 'DF949734', '380985674389');
 
 
 INSERT INTO hotel_rooms (additional_price_for_option, facilitie, number_room, price_room, service, type_room)

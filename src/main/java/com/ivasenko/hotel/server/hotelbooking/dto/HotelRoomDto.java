@@ -21,22 +21,33 @@ public class HotelRoomDto {
 
     private String service;
 
-    private Integer priceRoom;
+    private Integer priceRoomCount;
 
-    private Integer additionalPriceForOption;
+    private Integer additionalPriceForOptionCount;
+
+
+
 
     public HotelRoomDto() {
     }
 
-    public HotelRoomDto(Long id, Integer numberRoom, String typeRoom, String facilitie, String service,
-                        Integer priceRoom, Integer additionalPriceForOption) {
+    public HotelRoomDto(Long id, Integer numberRoom, String typeRoom, String facilitie, String service) {
         this.id = id;
         this.numberRoom = numberRoom;
         this.typeRoom = typeRoom;
         this.facilitie = facilitie;
         this.service = service;
-        this.priceRoom = priceRoom;
-        this.additionalPriceForOption = additionalPriceForOption;
+    }
+
+    public HotelRoomDto(Long id, Integer numberRoom, String typeRoom, String facilitie, String service,
+                        Integer priceRoomCount, Integer additionalPriceForOptionCount) {
+        this.id = id;
+        this.numberRoom = numberRoom;
+        this.typeRoom = typeRoom;
+        this.facilitie = facilitie;
+        this.service = service;
+        this.priceRoomCount = priceRoomCount;
+        this.additionalPriceForOptionCount = additionalPriceForOptionCount;
     }
 
     public Long getId() {
@@ -79,21 +90,19 @@ public class HotelRoomDto {
         this.service = service;
     }
 
-    public Integer getPriceRoom() {
-        return priceRoom;
+    public Integer getPriceRoomCount() {
+        return priceRoomCount;
     }
 
-    public void setPriceRoom(Integer priceRoom) {
-        this.priceRoom = priceRoom;
+    public void setPriceRoomCount(Integer priceRoomCount) {
+        this.priceRoomCount = priceRoomCount;
     }
 
-    public Integer getAdditionalPriceForOption() {
-        return additionalPriceForOption;
+    public Integer getAdditionalPriceForOptionCount() {
+        return additionalPriceForOptionCount;
     }
 
-    public void setAdditionalPriceForOption(Integer additionalPriceForOption) {
-        this.additionalPriceForOption = additionalPriceForOption;
+    public void setAdditionalPriceForOptionCount(Integer additionalPriceForOptionCount) {
+        this.additionalPriceForOptionCount = additionalPriceForOptionCount;
     }
-
-
 }

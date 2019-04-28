@@ -13,21 +13,21 @@ public class HotelRoomProfileCostDto {
 
     private Long id;
 
-    private Integer countAdditionalPrice;
+    private Integer additionalPriceForOptionCount;
 
-    private Integer countPrice;
+    private Integer priceRoomCount;;
 
-    private Set<ReservationHotelRoom> reservationDate;
+    private Integer totalRoom;
 
     public HotelRoomProfileCostDto() {
     }
 
-    public HotelRoomProfileCostDto(Long id, Integer countAdditionalPrice, Integer countPrice,
-                                   Set<ReservationHotelRoom> reservationDate) {
+    public HotelRoomProfileCostDto(Long id, Integer additionalPriceForOptionCount, Integer priceRoomCount,
+                                   Integer totalRoom) {
         this.id = id;
-        this.countAdditionalPrice = countAdditionalPrice;
-        this.countPrice = countPrice;
-        this.reservationDate = reservationDate;
+        this.additionalPriceForOptionCount = additionalPriceForOptionCount;
+        this.priceRoomCount = priceRoomCount;
+        this.totalRoom = totalRoom;
     }
 
     public Long getId() {
@@ -38,27 +38,27 @@ public class HotelRoomProfileCostDto {
         this.id = id;
     }
 
-    public Integer getCountAdditionalPrice() {
-        return countAdditionalPrice;
+    public Integer getAdditionalPriceForOptionCount() {
+        return additionalPriceForOptionCount;
     }
 
-    public void setCountAdditionalPrice(Integer countAdditionalPrice) {
-        this.countAdditionalPrice = countAdditionalPrice;
+    public void setAdditionalPriceForOptionCount(Integer additionalPriceForOptionCount) {
+        this.additionalPriceForOptionCount = additionalPriceForOptionCount;
     }
 
-    public Integer getCountPrice() {
-        return countPrice;
+    public Integer getPriceRoomCount() {
+        return priceRoomCount;
     }
 
-    public void setCountPrice(Integer countPrice) {
-        this.countPrice = countPrice;
+    public void setPriceRoomCount(Integer priceRoomCount) {
+        this.priceRoomCount = priceRoomCount;
     }
 
-    public Set<ReservationHotelRoom> getReservationDate() {
-        return reservationDate;
+    public Integer getTotalRoom() {
+        return totalRoom;
     }
 
-    public void setReservationDate(Set<ReservationHotelRoom> reservationDate) {
-        this.reservationDate = reservationDate;
+    public void setTotalRoom(Integer totalRoom) {
+        this.totalRoom = totalRoom;
     }
 }
