@@ -8,7 +8,6 @@ import com.ivasenko.hotel.server.hotelbooking.repository.ProfileRepository;
 import com.ivasenko.hotel.server.hotelbooking.service.ProfileService;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,7 +62,9 @@ public class ProfileControllerIntegrationTest {
     @Autowired
     Gson gson;
 
+
     private Profile profile;
+
 
     public Profile addProfile(){
         Profile profile = new Profile();
@@ -76,21 +77,13 @@ public class ProfileControllerIntegrationTest {
         return profile;
     }
 
+
     @Before
     public void setUp(){
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(wac)
                 .build();
     }
-
-    @After
-    public void closed(){
-        if (profile != null) {
-            profileService.deleteProfile(profile.getId());
-        }
-
-    }
-
 
 
     @Test
@@ -130,6 +123,7 @@ public class ProfileControllerIntegrationTest {
 
         String str = result.getResponse().getContentAsString();
         assertTrue(str.contains("passport\":\"" + profile.getPassport()));
+        profileService.deleteProfile(profile.getId());
     }
 
     @Test

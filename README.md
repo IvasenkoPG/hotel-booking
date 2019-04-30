@@ -24,7 +24,12 @@ From the project folder:
 Run through docker:
 
 Install the docker on the machine:
+Docker:
+https://docs.docker.com/install/linux/docker-ce/ubuntu/
+Docker-Compose:
+https://docs.docker.com/compose/install/
 
+Run docker compose
 
 
 
@@ -78,9 +83,18 @@ Method: Post
 
 *** Profile booking the room for specified days ***
 
+Url: http://localhost:9991/api/reservation
 
+Method: Post
 
-
+{
+   "startDate":"2019-11-23",
+   "finishDate":"2019-11-30",
+   "priceRoomCount":3500,
+   "additionalPriceForOptionCount":406,
+   "hotelRooms":{"id":10},
+   "profiles":{"id":6}
+}
 
 *** View Profile room ***
 

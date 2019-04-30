@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Service
-public class HotelRoomServiceImpl implements HotelRoomService{
+public class HotelRoomServiceImpl implements HotelRoomService {
 
     private static final Logger LOG = LoggerFactory.getLogger(HotelRoomServiceImpl.class);
 
@@ -27,28 +27,15 @@ public class HotelRoomServiceImpl implements HotelRoomService{
         this.hotelRoomRepository = hotelRoomRepository;
     }
 
-//    /**
-//     * Method returns all reserved hotel rooms.
-//     *
-//     * @param status hotel room typeRoom.
-//     * @return List<HotelRoomDto>
-//     */
-//    @Override
-//    public List<HotelRoomDto> findReservedByTypeRoom(Boolean status) {
-//        if (LOG.isDebugEnabled()) {
-//            LOG.debug("Request to get all reserved hotel room typeRoom: ", status);
-//        }
-//        return hotelRoomRepository.findReservedByTypeRoom(status);
-//    }
-//
-//    /**
-//     * Method returns all free hotel rooms.
-//     *
-//     * @param status hotel room typeRoom.
-//     * @return List<HotelRoomDto>
-//     */
+    /**
+     * Method returns all free hotel rooms.
+     *
+     * @return List<HotelRooms>
+     * @RequestParam startDateClient
+     * @RequestParam finishDateClient
+     */
     @Override
-    public List<HotelRooms> findAllHotelRoomsFreeByDates(String startDateClient, String finishDateClient){
+    public List<HotelRooms> findAllHotelRoomsFreeByDates(String startDateClient, String finishDateClient) {
         if (LOG.isDebugEnabled()) {
             LOG.debug("Request to get all free hotel room by Dates: ", startDateClient, finishDateClient);
         }
@@ -116,10 +103,4 @@ public class HotelRoomServiceImpl implements HotelRoomService{
         hotelRoomProfileCostDto.setTotalRoom(hotelRoomsByProfilePassport.getAdditionalPriceForOptionCount() + hotelRoomsByProfilePassport.getPriceRoomCount());
         return hotelRoomProfileCostDto;
     }
-
-    @Override
-    public HotelRooms updateHotelRooms(HotelRooms hotelRooms) {
-        return hotelRoomRepository.save(hotelRooms);
-    }
-
 }

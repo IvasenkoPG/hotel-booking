@@ -15,22 +15,7 @@ import java.util.List;
 
 @Repository
 public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
-//    /**
-//     * Method returns all reserved hotel rooms.
-//     *
-//     * @param status hotel room typeRoom.
-//     * @return List<HotelRoomDto>
-//     */
-//    @Query("SELECT" +
-//            " NEW com.ivasenko.hotel.server.hotelbooking.dto.HotelRoomDto" +
-//            "(hr.id, hr.numberRoom, hr.typeRoom, hr.facilitie, hr.service, hr.price, hr.additionalPrice," +
-//            " hr.countAdditionalPrice, hr.countPrice, hr.status, hr.profiles)" +
-//            " FROM HotelRooms hr" +
-//            " LEFT JOIN  hr.profiles p" +
-////            " LEFT JOIN  hr.reservationDates rd" +
-//            " WHERE hr.status = :status")
-//    List<HotelRoomDto> findReservedByTypeRoom(@Param("status") final Boolean status);
-//
+
     /**
      * Method returns all free hotel rooms.
      *
@@ -76,11 +61,7 @@ public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
 
 
 
-//    @Query(value = "SELECT COUNT(*) FROM reservation_date" +
-//            " WHERE start_date >=:startDateClient AND finish_date<=:finishDateClient", nativeQuery = true)
-//    int existsFreeDate(@Param("startDateClient") final String startDateClient, @Param("finishDateClient") final String finishDateClient);
-
-    HotelRooms save(HotelRooms hotelRooms);
+    HotelRooms findByNumberRoom(Integer numberRoom);
 }
 
 

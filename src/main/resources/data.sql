@@ -8,6 +8,8 @@ INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
 VALUES ('Paris', 'poly@poly.com', 'Poly', 'Loren', 'OU949403', '380648390923');
 INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
 VALUES ('Dublin', 'maykl@maykl.com', 'Maykl', 'Stivenson', 'DF949734', '380985674389');
+INSERT INTO profile (address, email, first_name, last_name, passport, telephone)
+VALUES ('Krakow', 'robert@robert.com', 'Robert', 'Gyrevich', 'PO859439', '380938569023');
 
 
 INSERT INTO hotel_rooms (additional_price_for_option, facilitie, number_room, price_room, service, type_room)

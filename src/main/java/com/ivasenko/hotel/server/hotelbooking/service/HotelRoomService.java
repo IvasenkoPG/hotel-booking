@@ -23,5 +23,4 @@ public interface HotelRoomService {
 
     HotelRoomProfileCostDto findHotelRoomCost(String passport);
 
-    HotelRooms updateHotelRooms (HotelRooms hotelRooms);
 }

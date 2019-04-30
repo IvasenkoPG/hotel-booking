@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Class represents user com.ivasenko.hotel.server.hotelbooking.controller.
+ * Class represents hotel room controller.
  */
 
 @RestController
@@ -40,40 +40,6 @@ public class HotelRoomController {
         this.hotelRoomRepository = hotelRoomRepository;
         this.profileService = profileService;
     }
-
-
-
-//    /**
-//     * Method performs registration hotel room.
-//     *
-//     * @param profile contains user information.
-//     * @return ResponseEntity
-//     */
-//    @PostMapping("/profile")
-//    public ResponseEntity<?> reservedHotelRoomByProfile(@RequestBody final Profile profile,
-//                                        @RequestParam(name = "startDateClient") String startDateClient,
-//                                        @RequestParam(name = "finishDateClient") String finishDateClient) {
-//        LOG.info("registration hotel room: {}", profile, startDateClient, finishDateClient);
-//
-//        if(profileService.existsByEmail(profile)){
-//            LOG.info(Message.PROFILE_ALREADY_EXISTS.getMsgBody());
-//            throw new ProfileAlreadyExistsException(Message.PROFILE_ALREADY_EXISTS.getMsgBody());
-//        }
-//        profileService.createProfile(profile);
-//        int existDate = hotelRoomRepository.existsFreeDate(startDateClient, finishDateClient);
-//        if(existDate == 0) {
-//            hotelRoomsDto = hotelRoomService.findFreeByTypeRoom(status);
-//            if (hotelRoomsDto == null || hotelRoomsDto.isEmpty()) {
-//                LOG.info(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
-//                throw new ProfileNotFoundException(Message.HOTEL_ROOMS_NOT_FOUND.getMsgBody());
-//            }
-//        }
-//
-//
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).body(profile.getLastName() + " " + profile.getFirstName());
-//    }
-
 
     /**
      * Method returns all hotel rooms.

@@ -17,7 +17,7 @@ import java.util.List;
 
 
 /**
- * Class represents user com.ivasenko.hotel.server.hotelbooking.controller.
+ * Class represents profile controller.
  */
 
 @RestController

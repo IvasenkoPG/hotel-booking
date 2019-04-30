@@ -24,10 +24,10 @@ public class ReservationHotelRoom {
 
     private Integer additionalPriceForOptionCount;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private HotelRooms hotelRooms;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private Profile profiles;
 
     public ReservationHotelRoom() {
