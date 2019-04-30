@@ -6,16 +6,11 @@ import com.ivasenko.hotel.server.hotelbooking.entity.HotelRooms;
 import com.ivasenko.hotel.server.hotelbooking.entity.Profile;
 import com.ivasenko.hotel.server.hotelbooking.entity.ReservationHotelRoom;
 import com.ivasenko.hotel.server.hotelbooking.repository.HotelRoomRepository;
-import com.ivasenko.hotel.server.hotelbooking.repository.ReservationHotelRoomRepository;
-import com.ivasenko.hotel.server.hotelbooking.service.HotelRoomService;
 import com.ivasenko.hotel.server.hotelbooking.service.ProfileService;
 import com.ivasenko.hotel.server.hotelbooking.service.ReservationHotelRoomService;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,10 +22,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
-import java.util.Optional;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,9 +38,6 @@ public class ReservationHotelRoomControllerIntegrationTest{
     @Autowired
     private MockMvc mockMvc;
 
-    @InjectMocks
-    private ReservationHotelRoomController reservationHotelRoomController;
-
     @Autowired
     ReservationHotelRoomService reservationHotelRoomService;
 
@@ -63,12 +52,6 @@ public class ReservationHotelRoomControllerIntegrationTest{
 
     @Autowired
     private HotelRoomRepository hotelRoomRepository;
-
-    @Autowired
-    private ReservationHotelRoomRepository reservationHotelRoomRepository;
-
-    private ReservationHotelRoom reservationHotelRoom;
-
 
 
     public ReservationHotelRoom createReservationHotelRoom(){

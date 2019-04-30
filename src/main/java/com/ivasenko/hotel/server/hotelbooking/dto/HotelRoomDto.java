@@ -1,10 +1,6 @@
 package com.ivasenko.hotel.server.hotelbooking.dto;
 
 
-import com.ivasenko.hotel.server.hotelbooking.entity.ReservationHotelRoom;
-
-import java.util.Set;
-
 /**
  * Class represents Hotel Room Dto.
  */

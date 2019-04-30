@@ -3,7 +3,6 @@ package com.ivasenko.hotel.server.hotelbooking.service;
 import com.ivasenko.hotel.server.hotelbooking.entity.Profile;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Interface represents Profile service methods.

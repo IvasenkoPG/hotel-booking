@@ -58,10 +58,6 @@ public interface HotelRoomRepository extends JpaRepository<HotelRooms, Long> {
             "LEFT JOIN ReservationHotelRoom rhr ON hr.id = hotel_rooms_id " +
             "LEFT JOIN Profile p ON p.id = profiles_id where p.passport = :passport")
     HotelRoomDto findHotelRoomsByPassport(@Param("passport") final String passport);
-
-
-
-    HotelRooms findByNumberRoom(Integer numberRoom);
 }
 
 
