@@ -2,10 +2,10 @@ FROM java:8
 
 MAINTAINER ivasenko.pg@gmail.com
 
-COPY target/hotel-booking-0.0.1-SNAPSHOT.jar .
+COPY target/hotel-booking.jar .
 
 EXPOSE 9991
-ENTRYPOINT ["java","-jar","hotel-booking-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","hotel-booking.jar"]
 
 
 

@@ -15,7 +15,10 @@ Password: admin
 "cd /opt/ && sudo tar -xzvf ~/Downloads/apache-maven-3.3.9-bin.tar.gz",
 "sudo update-alternatives --install /usr/bin/mvn maven /opt/apache-maven-3.3.9/bin/mvn 1001"
 
+In application.properties commit row 10
+
 From the project folder:
+
 
 4. In the terminal, run the command "mvn clean package"
 
@@ -26,10 +29,15 @@ Run through docker:
 Install the docker on the machine:
 Docker:
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
-Docker-Compose:
-https://docs.docker.com/compose/install/
 
-Run docker compose
+1. In application.properties commit row 9
+
+Run docker:
+docker run --name db -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=hotelDB -e MYSQL_USER=root -e MYSQ_PASSWORD=admin -d mysql:5.7
+
+docker build . -t hotel-booking
+
+sudo docker run -p 9991:9991 --name hotel-booking --link db:mysql hotel-booking
 
 
 
